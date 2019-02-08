@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.jpacman.framework.model.Board;
 import org.jpacman.framework.model.Sprite;
 import org.jpacman.framework.model.Tile;
+import org.jpacman.framework.model.IBoardInspector.SpriteType;
 import org.jpacman.framework.model.Direction;
 import org.junit.Before;
 import org.junit.Test;
@@ -62,13 +63,17 @@ public class BoardTest {
 	
 	
 	/**
-	 * Test the spriteTypeAt() method
+	 * Test the spriteTypeAt() with new sprite method
 	 */
 	@Test
 	public void testSpriteTypeAt(){
 		Sprite sprite = new Sprite(){};
 		this.board.put(sprite, 1, 1);
 		assertEquals(this.board.spriteTypeAt(1, 1), sprite.getSpriteType());
+	}
+	@Test
+	public void testNullSpriteTypeAt(){
+		assertEquals(this.board.spriteTypeAt(1, 1), SpriteType.EMPTY);
 	}
 	
 	/**
