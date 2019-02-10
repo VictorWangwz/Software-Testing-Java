@@ -30,5 +30,14 @@ public class FactoryExceptionTest {
 	public void testFactoryException() throws FactoryException{
 		this.parser.parseMap(this.map);
 	}
-
+	
+	/**
+     * Common FactoryException testing with cause
+     */
+	@Test(expected=FactoryException.class)
+	public void testFactoryExceptionWithCause() throws FactoryException{
+		Throwable t = new Throwable();
+		FactoryException f = new FactoryException("Problem reading file ", t);
+	}
+	
 }
