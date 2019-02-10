@@ -32,7 +32,7 @@ public class FactoryExceptionTest {
 	}
 	
 	/**
-     * Common FactoryException testing with cause
+     * Common FactoryException constructor testing without cause
      */
 	@Test(expected=FactoryException.class)
 	public void testFactoryExceptionConstructorWithoutCause() throws FactoryException{
@@ -40,7 +40,7 @@ public class FactoryExceptionTest {
 	}
 	
 	/**
-     * Common FactoryException testing with cause
+     * Common FactoryException constructor testing with cause
      */
 	@Test(expected=FactoryException.class)
 	public void testFactoryExceptionConstructorWithCause() throws FactoryException{
