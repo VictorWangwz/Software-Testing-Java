@@ -35,7 +35,15 @@ public class FactoryExceptionTest {
      * Common FactoryException testing with cause
      */
 	@Test(expected=FactoryException.class)
-	public void testFactoryExceptionWithCause() throws FactoryException{
+	public void testFactoryExceptionConstructorWithoutCause() throws FactoryException{
+		FactoryException f = new FactoryException("Problem reading file ");
+	}
+	
+	/**
+     * Common FactoryException testing with cause
+     */
+	@Test(expected=FactoryException.class)
+	public void testFactoryExceptionConstructorWithCause() throws FactoryException{
 		Throwable t = new Throwable();
 		FactoryException f = new FactoryException("Problem reading file ", t);
 	}
