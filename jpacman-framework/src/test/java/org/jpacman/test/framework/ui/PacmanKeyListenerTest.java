@@ -24,11 +24,6 @@ public class PacmanKeyListenerTest {
 		Robot robot = new Robot();
 		ui.initialize();
 		ui.start();
-		IPacmanInteraction eventHandler = ui.eventHandler();
-		for (PacmanKeyListener listener:
-	         ui.getListeners(PacmanKeyListener.class)) {
-			System.out.print(listener);
-			listener.keyPressed(this.event);
-		}
+		robot.keyPress(KeyEvent.VK_K);
 	}
 }
