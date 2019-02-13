@@ -16,7 +16,6 @@ public class BoardTest {
 	private final int height = 10;
 	private final int width = 10;
 	
-	
 	/**
 	 * Initialize a board with default height and width
 	 */
@@ -32,6 +31,7 @@ public class BoardTest {
 	public void testHeight(){
 		assertEquals(this.height, board.getHeight());
 	}
+
 	
 	/**
 	 * Test the getWidth() method
@@ -49,6 +49,15 @@ public class BoardTest {
 		Sprite sprite = new Sprite(){};
 		this.board.put(sprite, 1, 1);
 		assertEquals(this.board.tileAt(1, 1).topSprite(),sprite);
+	}
+	@Test
+	public void testSpritePutWithoutBoardOnTile(){
+		Sprite sprite = new Sprite(){};
+		try{
+			this.board.put(sprite, 11, 1);
+		}catch(AssertionError e){
+		}
+		
 	}
 
 	/**
