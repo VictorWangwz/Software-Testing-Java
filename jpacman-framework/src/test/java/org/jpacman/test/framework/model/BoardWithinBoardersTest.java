@@ -17,19 +17,19 @@ public class BoardWithinBoardersTest {
 	private Board board;
 	private final int height = 10;
 	private final int width = 10;
-	private int x;
-	private int y;
+	private int tx;
+	private int ty;
 	private boolean flag;
 	
 	/**
 	 * Initialize a board with default height and width,
 	 * and create x, y, expected flag from parameters
 	 */
-	public BoardWithinBoardersTest(int x, int y, boolean flag){
-		this.board = new Board(width, height);
-		this.x = x;
-		this.y = y;
-		this.flag = flag;
+	public BoardWithinBoardersTest(int x, int y, boolean f){
+		board = new Board(width, height);
+		tx = x;
+		ty = y;
+		flag = f;
 	}
 	
 	
@@ -38,7 +38,7 @@ public class BoardWithinBoardersTest {
 	 */
 	@Test
 	public void testWithinBoarders(){
-		assertEquals(this.board.withinBorders(this.x, this.y), this.flag);
+		assertEquals(board.withinBorders(tx, ty), flag);
 	}
 	
 	
@@ -48,16 +48,26 @@ public class BoardWithinBoardersTest {
 	@Parameters
 	public static Collection<Object[]> data() {
 		Object[][] values = new Object[][] {
+			//on point
 			{0, 1, true},
+			//off point
 			{-1, 2, false},
+			//off point
 			{10, 3, false},
+			//on point
 			{9 ,4, true},
+			//on point
 			{5, 0, true},
+			//off point
 			{6, -1, false},
+			//off point
 			{7, 10, false},
+			//on point
 			{8, 9, true},
-			{4, 100, false},
-			{-1000, 6, false}
+			//in point
+			{4, 5, false},
+			//out point
+			{20, 20, false}
 		};
 		return Arrays.asList(values);
 	}

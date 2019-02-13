@@ -1,5 +1,7 @@
 package org.jpacman.test.framework.model;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.jpacman.framework.model.Board;
@@ -15,40 +17,42 @@ public class BoardTest {
 	private Board board;
 	private final int height = 10;
 	private final int width = 10;
-	
+	private final Sprite sprite = new Sprite() { };
+	private final int x = 0;
+	private final int y = 0;
 	
 	/**
 	 * Initialize a board with default height and width
 	 */
 	@Before
 	public void setUp(){
-		this.board = new Board(this.width, this.height);
+		board = new Board(width, height);
+		board.put(sprite, x, y);
 	}
 	
 	/**
-	 * Test the getHeight() method
+	 * Test initialization (the getHeight() method)
 	 */
 	@Test
 	public void testHeight(){
-		assertEquals(this.height, board.getHeight());
+		assertEquals(height, board.getHeight());
 	}
 	
 	/**
-	 * Test the getWidth() method
+	 * Test initialization (the getWidth() method)
 	 */
 	@Test
 	public void testWidth(){
-		assertEquals(this.width, board.getWidth());
+		assertEquals(width, board.getWidth());
 	}
 	
 	/**
-	 * Test the put() method
+	 * Test initialization (the put() method)
 	 */
 	@Test
 	public void testSpritePutOnTile(){
-		Sprite sprite = new Sprite(){};
-		this.board.put(sprite, 1, 1);
-		assertEquals(this.board.tileAt(1, 1).topSprite(),sprite);
+		assertEquals(board.tileAt(x, y).topSprite(),sprite);
+		assertEquals(board.tileAt(x, y),sprite.getTile());
 	}
 
 	/**
@@ -56,9 +60,7 @@ public class BoardTest {
 	 */
 	@Test
 	public void testSpriteAt(){
-		Sprite sprite = new Sprite(){};
-		this.board.put(sprite, 1, 1);
-		assertEquals(this.board.spriteAt(1, 1), sprite);
+		assertEquals(board.spriteAt(x, y), sprite);
 	}
 	
 	
@@ -67,13 +69,24 @@ public class BoardTest {
 	 */
 	@Test
 	public void testSpriteTypeAt(){
-		Sprite sprite = new Sprite(){};
-		this.board.put(sprite, 1, 1);
-		assertEquals(this.board.spriteTypeAt(1, 1), sprite.getSpriteType());
+		assertEquals(board.spriteTypeAt(x, y), sprite.getSpriteType());
 	}
 	@Test
 	public void testNullSpriteTypeAt(){
-		assertEquals(this.board.spriteTypeAt(1, 1), SpriteType.EMPTY);
+		assertEquals(board.spriteTypeAt(x+1, y+1), SpriteType.EMPTY);
+	}
+	
+	/**
+	 * Test what happens if there are multiple sprites on one tile.
+	 */
+	@Test
+	public void multipleSprites() {
+		Sprite top = new Sprite() {};
+		board.put(top, x, y);
+		
+		// now 'top' is the top most sprite.
+		assertThat(board.spriteAt(0, 0), equalTo(top));
+
 	}
 	
 	/**
@@ -81,17 +94,17 @@ public class BoardTest {
 	 */
 	@Test
 	public void testTileAt(){
-		Tile tile = this.board.tileAt(1,1);
-		assertEquals(tile.getX(), 1);
-		assertEquals(tile.getY(), 1);
+		Tile tile = board.tileAt(x, y);
+		assertEquals(tile.getX(), x);
+		assertEquals(tile.getY(), y);
 	}
 	
 	/**
-	 * Test the withinBoarders() method
+	 * Test that one out point is not on the board //withinBoarders() method
 	 */
 	@Test
 	public void testWithinBorders(){
-		assertEquals(false, this.board.withinBorders(this.height, this.width));
+		assertEquals(false, board.withinBorders(height, width));
 	}
 	
 	/**
@@ -99,21 +112,21 @@ public class BoardTest {
 	 */
 	@Test 
 	public void testTileAtOffside(){
-		Tile start= this.board.tileAt(1,1);
-		Tile tile = this.board.tileAtOffset(start, 1, 1);
-		assertEquals(tile, this.board.tileAt(2, 2));
+		Tile start= board.tileAt(1,1);
+		Tile tile = board.tileAtOffset(start, 1, 1);
+		assertEquals(tile, board.tileAt(2, 2));
 	}
 	
 	
 	/**
-	 * Test the tileAtDirection() method
+	 * Test what happens if a tile moves across the boundary //tileAtDirection() method
 	 */
 	@Test 
 	public void testTileAtDirection(){
-		Tile start= this.board.tileAt(1,1);
-		Tile tileEnd = this.board.tileAtDirection(start, Direction.LEFT);
-		Tile expectEnd = this.board.tileAt(0, 1);
-		assertEquals(tileEnd, expectEnd);
+		Tile start= board.tileAt(x, y);
+		Tile actual = board.tileAtDirection(start, Direction.LEFT);
+		Tile desired = board.tileAt(width-1, y);
+		assertEquals(actual, desired);
 	}
 	
 	
