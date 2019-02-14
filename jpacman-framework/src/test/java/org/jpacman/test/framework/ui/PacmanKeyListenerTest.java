@@ -1,5 +1,7 @@
 package org.jpacman.test.framework.ui;
 
+import static org.junit.Assert.fail;
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -25,8 +27,9 @@ public class PacmanKeyListenerTest {
 		right = new KeyEvent(ui, 0, 0, 0, KeyEvent.VK_RIGHT, 'd');
 		}
 	@Test
-	public void testUIActions() throws FactoryException, InterruptedException, AWTException {
+	public void testUIActions()  {
 
+		try {
 		Robot robot = new Robot();
 		ui.initialize();
 		ui.start();
@@ -37,6 +40,6 @@ public class PacmanKeyListenerTest {
 		robot.keyPress(KeyEvent.VK_Q);
 		robot.keyPress(KeyEvent.VK_S);
 		robot.keyPress(KeyEvent.VK_X);
-	
+		} catch (Exception e) {fail("Keytype failed!");}
 	}
 }

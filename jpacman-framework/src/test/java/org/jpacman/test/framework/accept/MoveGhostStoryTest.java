@@ -24,7 +24,7 @@ import org.junit.Test;
  */
 public class MoveGhostStoryTest extends AbstractAcceptanceTest {
 	
-	// Emtpy tile on the board next to the ghost.		
+	// Empty tile on the board next to the ghost.		
 	private Tile emptyTile;
 	
 	// Food tile on the board next to the ghost.
