@@ -25,16 +25,17 @@ public class FactoryExceptionTest {
 	
 	/**
      * Common FactoryException testing without cause
+	 * @throws FactoryException 
      */
 	@Test(expected=FactoryException.class)
-	public void testFactoryException() throws FactoryException{
-		this.parser.parseMap(this.map);
+	public void testFactoryException() throws FactoryException {
+		parser.parseMap(map);
 	}
 	
 	/**
      * Common FactoryException constructor testing without cause
      */
-	@Test(expected=FactoryException.class)
+	@Test
 	public void testFactoryExceptionConstructorWithoutCause() throws FactoryException{
 		FactoryException f = new FactoryException("Problem reading file ");
 	}
@@ -42,7 +43,7 @@ public class FactoryExceptionTest {
 	/**
      * Common FactoryException constructor testing with cause
      */
-	@Test(expected=FactoryException.class)
+	@Test
 	public void testFactoryExceptionConstructorWithCause() throws FactoryException{
 		Throwable t = new Throwable();
 		FactoryException f = new FactoryException("Problem reading file ", t);

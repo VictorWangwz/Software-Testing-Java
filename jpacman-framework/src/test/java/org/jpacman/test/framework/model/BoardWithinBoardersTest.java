@@ -65,7 +65,7 @@ public class BoardWithinBoardersTest {
 			//on point
 			{8, 9, true},
 			//in point
-			{4, 5, false},
+			{4, 5, true},
 			//out point
 			{20, 20, false}
 		};
