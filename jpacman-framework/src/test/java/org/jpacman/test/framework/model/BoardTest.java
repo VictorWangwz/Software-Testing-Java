@@ -21,7 +21,7 @@ public class BoardTest {
 	 */
 	@Before
 	public void setUp(){
-		this.board = new Board(this.width, this.height);
+		board = new Board(width, height);
 	}
 	
 	/**
@@ -45,7 +45,7 @@ public class BoardTest {
 	 */
 	@Test
 	public void testHeight(){
-		assertEquals(this.height, board.getHeight());
+		assertEquals(height, board.getHeight());
 	}
 
 	
@@ -54,7 +54,7 @@ public class BoardTest {
 	 */
 	@Test
 	public void testWidth(){
-		assertEquals(this.width, board.getWidth());
+		assertEquals(width, board.getWidth());
 	}
 	
 	/**
@@ -63,18 +63,18 @@ public class BoardTest {
 	@Test
 	public void testSpritePutOnTile(){
 		Sprite sprite = new Sprite(){};
-		this.board.put(sprite, 1, 1);
-		assertEquals(this.board.tileAt(1, 1).topSprite(),sprite);
+		board.put(sprite, 1, 1);
+		assertEquals(board.tileAt(1, 1).topSprite(),sprite);
 	}
 	
 	/**
 	 * Test the put() method, put sprite on tile that is without board
 	 */
 	@Test
-	public void testSpritePutWithoutBoardOnTile(){
+	public void testSpritePutOnTileOffBoard(){
 		Sprite sprite = new Sprite(){};
 		try{
-			this.board.put(sprite, 11, 1);
+			board.put(sprite, 11, 1);
 		}catch(AssertionError e){
 		}
 		
@@ -87,7 +87,7 @@ public class BoardTest {
 	public void testSpritePutNullOnTile(){
 		Sprite sprite = null;
 		try{
-			this.board.put(sprite, 1, 1);
+			board.put(sprite, 1, 1);
 		}catch(AssertionError e){
 		}
 		
@@ -97,11 +97,11 @@ public class BoardTest {
 	 * Test the put() method, put sprite that is already on tile onto tile
 	 */
 	@Test
-	public void testSpriteTileNullOnTile(){
+	public void testExistSpritePutOnTile(){
 		Sprite sprite = new Sprite(){};
-		this.board.put(sprite, 1, 1);
+		board.put(sprite, 1, 1);
 		try{
-			this.board.put(sprite, 2, 1);
+			board.put(sprite, 2, 1);
 		}catch(AssertionError e){
 		}
 		
@@ -113,8 +113,8 @@ public class BoardTest {
 	@Test
 	public void testSpriteAt(){
 		Sprite sprite = new Sprite(){};
-		this.board.put(sprite, 1, 1);
-		assertEquals(this.board.spriteAt(1, 1), sprite);
+		board.put(sprite, 1, 1);
+		assertEquals(board.spriteAt(1, 1), sprite);
 	}
 	
 	/**
@@ -123,9 +123,9 @@ public class BoardTest {
 	@Test
 	public void testSpriteAtOutBoarders(){
 		Sprite sprite = new Sprite(){};
-		this.board.put(sprite, 1, 1);
+		board.put(sprite, 1, 1);
 		try{
-			assertEquals(this.board.spriteAt(11, 1), sprite);
+			assertEquals(board.spriteAt(11, 1), sprite);
 		}catch(AssertionError e){
 		}
 		
@@ -138,8 +138,8 @@ public class BoardTest {
 	@Test
 	public void testSpriteTypeAt(){
 		Sprite sprite = new Sprite(){};
-		this.board.put(sprite, 1, 1);
-		assertEquals(this.board.spriteTypeAt(1, 1), sprite.getSpriteType());
+		board.put(sprite, 1, 1);
+		assertEquals(board.spriteTypeAt(1, 1), sprite.getSpriteType());
 	}
 	
 	/**
@@ -148,9 +148,9 @@ public class BoardTest {
 	@Test
 	public void testSpriteTypeAtOutBoarders(){
 		Sprite sprite = new Sprite(){};
-		this.board.put(sprite, 1, 1);
+		board.put(sprite, 1, 1);
 		try{
-			assertEquals(this.board.spriteTypeAt(11, 1), sprite.getSpriteType());
+			assertEquals(board.spriteTypeAt(11, 1), sprite.getSpriteType());
 		}catch(AssertionError e){
 		}
 		
@@ -158,7 +158,7 @@ public class BoardTest {
 	
 	@Test
 	public void testNullSpriteTypeAt(){
-		assertEquals(this.board.spriteTypeAt(1, 1), SpriteType.EMPTY);
+		assertEquals(board.spriteTypeAt(1, 1), SpriteType.EMPTY);
 	}
 	
 	/**
@@ -166,7 +166,7 @@ public class BoardTest {
 	 */
 	@Test
 	public void testTileAt(){
-		Tile tile = this.board.tileAt(1,1);
+		Tile tile = board.tileAt(1,1);
 		assertEquals(tile.getX(), 1);
 		assertEquals(tile.getY(), 1);
 	}
@@ -178,7 +178,7 @@ public class BoardTest {
 	public void testTileAtOutBoarder(){
 		
 		try{
-			Tile tile = this.board.tileAt(11,11);
+			Tile tile = board.tileAt(11,11);
 		}catch(AssertionError e){
 		}
 		
@@ -189,7 +189,7 @@ public class BoardTest {
 	 */
 	@Test
 	public void testWithinBorders(){
-		assertEquals(false, this.board.withinBorders(this.height, this.width));
+		assertEquals(false, board.withinBorders(this.height, this.width));
 	}
 	
 	/**
@@ -197,9 +197,9 @@ public class BoardTest {
 	 */
 	@Test 
 	public void testTileAtOffside(){
-		Tile start= this.board.tileAt(1,1);
-		Tile tile = this.board.tileAtOffset(start, 1, 1);
-		assertEquals(tile, this.board.tileAt(2, 2));
+		Tile start= board.tileAt(1,1);
+		Tile tile = board.tileAtOffset(start, 1, 1);
+		assertEquals(tile, board.tileAt(2, 2));
 	}
 	
 	/**
@@ -209,7 +209,7 @@ public class BoardTest {
 	public void testTileAtOffsideStartNull(){
 		try{
 			Tile start= null;
-			Tile tile = this.board.tileAtOffset(start, 1, 1);
+			Tile tile = board.tileAtOffset(start, 1, 1);
 		}catch(AssertionError e){
 		}
 		
@@ -221,8 +221,8 @@ public class BoardTest {
 	@Test 
 	public void testTileAtOffsideNegative(){
 		try{
-			Tile start= this.board.tileAt(1,1);
-			Tile tile = this.board.tileAtOffset(start, 1, 1);
+			Tile start= board.tileAt(1,1);
+			Tile tile = board.tileAtOffset(start, 1, 1);
 		}catch(AssertionError e){
 		}
 		
@@ -233,9 +233,9 @@ public class BoardTest {
 	 */
 	@Test 
 	public void testTileAtDirection(){
-		Tile start= this.board.tileAt(1,1);
-		Tile tileEnd = this.board.tileAtDirection(start, Direction.LEFT);
-		Tile expectEnd = this.board.tileAt(0, 1);
+		Tile start= board.tileAt(1,1);
+		Tile tileEnd = board.tileAtDirection(start, Direction.LEFT);
+		Tile expectEnd = board.tileAt(0, 1);
 		assertEquals(tileEnd, expectEnd);
 	}
 	
