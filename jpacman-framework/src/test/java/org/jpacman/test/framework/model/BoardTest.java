@@ -2,13 +2,13 @@ package org.jpacman.test.framework.model;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.jpacman.framework.model.Board;
+import org.jpacman.framework.model.Direction;
+import org.jpacman.framework.model.IBoardInspector.SpriteType;
 import org.jpacman.framework.model.Sprite;
 import org.jpacman.framework.model.Tile;
-import org.jpacman.framework.model.IBoardInspector.SpriteType;
-import org.jpacman.framework.model.Direction;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,10 +37,12 @@ public class BoardTest {
 		try{
 			new Board(-1,10);
 		}catch(AssertionError e){
+			fail("throws AssertionError");
 		}
 		try{
 			new Board(10,-1);
 		}catch(AssertionError e){
+			fail("throws AssertionError");
 		}
 	}
 	
@@ -79,6 +81,7 @@ public class BoardTest {
 		try{
 			board.put(sprite, 11, 1);
 		}catch(AssertionError e){
+			fail("throws AssertionError");
 		}
 		
 	}
@@ -92,6 +95,7 @@ public class BoardTest {
 		try{
 			board.put(sprite, x, y);
 		}catch(AssertionError e){
+			fail("throws AssertionError");
 		}
 		
 	}
@@ -105,6 +109,7 @@ public class BoardTest {
 		try{
 			board.put(sprite, 2, 1);
 		}catch(AssertionError e){
+			fail("throws AssertionError");
 		}
 		
 	}
@@ -126,6 +131,7 @@ public class BoardTest {
 		try{
 			board.spriteAt(11, 1);
 		}catch(AssertionError e){
+			fail("throws AssertionError");
 		}
 	}
 	
@@ -147,6 +153,7 @@ public class BoardTest {
 		try{
 			board.spriteTypeAt(11, 1);
 		}catch(AssertionError e){
+			fail("throws AssertionError");
 		}
 		
 	}
@@ -175,6 +182,7 @@ public class BoardTest {
 		try{
 			Tile tile = board.tileAt(11,11);
 		}catch(AssertionError e){
+			fail("throws AssertionError");
 		}
 		
 	}
@@ -218,6 +226,7 @@ public class BoardTest {
 			Tile start= null;
 			Tile tile = board.tileAtOffset(start, 1, 1);
 		}catch(AssertionError e){
+			fail("throws AssertionError");
 		}
 		
 	}
