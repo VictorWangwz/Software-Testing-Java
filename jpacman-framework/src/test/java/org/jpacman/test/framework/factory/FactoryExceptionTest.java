@@ -1,5 +1,7 @@
 package org.jpacman.test.framework.factory;
 
+import static org.junit.Assert.*;
+
 import org.jpacman.framework.factory.DefaultGameFactory;
 import org.jpacman.framework.factory.FactoryException;
 import org.jpacman.framework.factory.IGameFactory;
@@ -36,17 +38,26 @@ public class FactoryExceptionTest {
      * Common FactoryException constructor testing without cause
      */
 	@Test
-	public void testFactoryExceptionConstructorWithoutCause() throws FactoryException{
-		FactoryException f = new FactoryException("Problem reading file ");
+	public void testFactoryExceptionConstructorWithoutCause() {
+		String message = "Problem reading file ";
+		try {
+		FactoryException f = new FactoryException(message);
+		} catch (Exception e) {assertEquals(e.getMessage(),message);}
 	}
 	
 	/**
      * Common FactoryException constructor testing with cause
      */
 	@Test
-	public void testFactoryExceptionConstructorWithCause() throws FactoryException{
+	public void testFactoryExceptionConstructorWithCause() {
+		String message = "Problem reading file ";
 		Throwable t = new Throwable();
-		FactoryException f = new FactoryException("Problem reading file ", t);
+		try {
+		FactoryException f = new FactoryException(message, t);
+		} catch(Exception e) {
+			assertEquals(e.getMessage(),message);
+			assertEquals(e.getCause(),t);
+			}
 	}
 	
 }
