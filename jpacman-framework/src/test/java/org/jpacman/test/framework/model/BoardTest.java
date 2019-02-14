@@ -2,6 +2,7 @@ package org.jpacman.test.framework.model;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.jpacman.framework.model.Board;
@@ -37,12 +38,12 @@ public class BoardTest {
 		try{
 			new Board(-1,10);
 		}catch(AssertionError e){
-			fail("throws AssertionError");
+			assertTrue(true);
 		}
 		try{
 			new Board(10,-1);
 		}catch(AssertionError e){
-			fail("throws AssertionError");
+			assertTrue(true);
 		}
 	}
 	
@@ -81,7 +82,7 @@ public class BoardTest {
 		try{
 			board.put(sprite, 11, 1);
 		}catch(AssertionError e){
-			fail("throws AssertionError");
+			assertTrue(true);
 		}
 		
 	}
@@ -95,7 +96,7 @@ public class BoardTest {
 		try{
 			board.put(sprite, x, y);
 		}catch(AssertionError e){
-			fail("throws AssertionError");
+			assertTrue(true);
 		}
 		
 	}
@@ -109,7 +110,7 @@ public class BoardTest {
 		try{
 			board.put(sprite, 2, 1);
 		}catch(AssertionError e){
-			fail("throws AssertionError");
+			assertTrue(true);
 		}
 		
 	}
@@ -131,7 +132,7 @@ public class BoardTest {
 		try{
 			board.spriteAt(11, 1);
 		}catch(AssertionError e){
-			fail("throws AssertionError");
+			assertTrue(true);
 		}
 	}
 	
@@ -153,7 +154,7 @@ public class BoardTest {
 		try{
 			board.spriteTypeAt(11, 1);
 		}catch(AssertionError e){
-			fail("throws AssertionError");
+			assertTrue(true);
 		}
 		
 	}
@@ -182,7 +183,7 @@ public class BoardTest {
 		try{
 			Tile tile = board.tileAt(11,11);
 		}catch(AssertionError e){
-			fail("throws AssertionError");
+			assertTrue(true);
 		}
 		
 	}
@@ -220,14 +221,10 @@ public class BoardTest {
 	/**
 	 * Test the tileAtOffside() method with Start as null
 	 */
-	@Test 
+	@Test(expected=AssertionError.class)
 	public void testTileAtOffsideStartNull(){
-		try{
-			Tile start= null;
-			Tile tile = board.tileAtOffset(start, 1, 1);
-		}catch(AssertionError e){
-			fail("throws AssertionError");
-		}
+		Tile start= null;
+		Tile tile = board.tileAtOffset(start, 1, 1);
 		
 	}
 	
