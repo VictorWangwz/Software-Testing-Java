@@ -289,6 +289,19 @@ public class GameTest {
 		pm.consumePointsOnBoard(p, 1);
 		assertTrue(g.won());
 	}
+	
+	/**
+	 * Test when player died
+	 * 
+	 * @throws FactoryException Never.
+	 */
+	@Test 
+	public void testPlayerDied() throws FactoryException {
+		Game g = makePlay("P# ");
+		Player p = g.getPlayer();
+		p.die();
+		assertTrue(g.died());
+	}
 
 	
 	/**

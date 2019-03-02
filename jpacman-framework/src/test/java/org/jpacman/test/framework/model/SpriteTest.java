@@ -2,6 +2,7 @@ package org.jpacman.test.framework.model;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -10,6 +11,7 @@ import static org.junit.Assert.assertTrue;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+import org.jpacman.framework.model.IBoardInspector.SpriteType;
 import org.jpacman.framework.model.Sprite;
 import org.jpacman.framework.model.Tile;
 import org.junit.Before;
@@ -96,7 +98,28 @@ public class SpriteTest {
 		john.deoccupy();
 		assertNull(john.getTile());
 	}
-
+	/**
+	 * Test that a sprite get the sprite type
+	 */
+	@Test
+	public void testGetSpriteType() {
+		Sprite s = new Sprite() {
+		};
+		assertEquals(SpriteType.OTHER, s.getSpriteType());
+		
+	}
+	
+	/**
+	 * Test that a sprite get the sprite type to string
+	 */
+	@Test
+	public void testGetSpriteTypeToString() {
+		Sprite s = new Sprite() {
+		};
+		assertTrue(s.toString() instanceof String);
+		assertTrue(s.toString().toLowerCase().contains(s.getSpriteType().toString().toLowerCase()));
+		
+	}
 	/**
 	 * @param expected
 	 *            The tile the sprite should be on.
