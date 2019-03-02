@@ -6,11 +6,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-
-import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -25,8 +24,8 @@ import org.jpacman.framework.model.Game;
 import org.jpacman.framework.model.Ghost;
 import org.jpacman.framework.model.IBoardInspector.SpriteType;
 import org.jpacman.framework.model.Player;
+import org.jpacman.framework.model.PointManager;
 import org.jpacman.framework.model.Tile;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -272,6 +271,23 @@ public class GameTest {
 		
 		Tile newTile = g.getPlayer().getTile();
 		assertThat("Player moved", tileAt(g, 2, 0), equalTo(newTile));
+	}
+	
+	
+	/**
+	 * Test when PointsOnBoard changes, 
+	 * the player wining condition should still meet.
+	 * 
+	 * @throws FactoryException Never.
+	 */
+	@Test 
+	public void testPointsOnBoardChange() throws FactoryException {
+		Game g = makePlay("P# ");
+		Player p = g.getPlayer();
+		PointManager pm = g.getPointManager();
+		pm.addPointsToBoard(1);
+		pm.consumePointsOnBoard(p, 1);
+		assertTrue(g.won());
 	}
 
 	
