@@ -256,13 +256,15 @@ public class BoardTest {
 	public void testOnBoardMessage() {
 		int x = -1;
 		int y = -1;
+		int w = width;
+		int h = height;
 		try{
 			board.tileAt(x, y);
 		}catch(AssertionError e){
 			assertEquals(e.getMessage(),"PRE: "+
 					"(" + x + ", " + y + ")"
 					+ "not on board of size "
-					+ board.getWidth() + " * " + board.getHeight()
+					+ w + " * " + h
 					);
 		}
 	}
