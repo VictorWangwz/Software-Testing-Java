@@ -19,4 +19,10 @@ EError Prone is a static analysis tool for Java that catches common programming 
 It is open source and well-documented and available to the source code. 
 It is easy to use and can directly use Maven as the build tool. 
 And it is powerful with many default bug checkers.
-Most importantly, it uses Java which is much familiar to use than other languages.
+Most importantly, it uses Java which is much familiar to us than other languages.
+
+## Workflow of Error Prone
+1. Determine the bug to check and write the bug pattern for it: a variable which begins with a capital character will be viewed as a bug. Thus corresponding bug checker will check the name of the variable. If it begins with "A-Z", the error will be raised with the error message, the name of the bug checker and the severity during compiling time. If not, nothing will happen.
+2. Put the bug pattern in the package "com.google.errorprone.bugpatterns" together with other built-in patterns. Run mvn install.
+3. Create test cases with the above instances. Run test to see the result.
+
