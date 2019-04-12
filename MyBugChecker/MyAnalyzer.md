@@ -10,7 +10,7 @@ Create a file called MyAnalyzer.md and describe (1) why you chose the framework 
 how you use the framework to detect the bug you described above.
 
 ## Instances of bugs
-Positive Cases which will trigger the checker to report the failure: 1. int A = 0; 2. String PositiveCase; 3. Map<Integer, Integer> HashMapSample.
+Positive Cases which will trigger the checker to report the failure: 1. int Abc = 0; 2. String FFF; 3. int XyZ.
 Negative Cases which will pass the checker: int aSimpleVariable = 0;
 After running the test cases of these four, the result is shown in the figure below:
 <br />
