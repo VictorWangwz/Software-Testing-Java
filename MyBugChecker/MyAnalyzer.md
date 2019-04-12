@@ -13,7 +13,8 @@ how you use the framework to detect the bug you described above.
 Positive Cases which will trigger the checker to report the failure: 1. int A = 0; 2. String PositiveCase; 3. Map<Integer, Integer> HashMapSample.
 Negative Cases which will pass the checker: int aSimpleVariable = 0;
 After running the test cases of these four, the result is shown in the figure below:
-![alt text](http://url/to/img.png)
+<br />
+<img src="url/relativePath">
 ## Reason to choose Error Prone
 EError Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.
 It is open source and well-documented and available to the source code. 
