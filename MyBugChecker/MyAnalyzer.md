@@ -14,7 +14,7 @@ Positive Cases which will trigger the checker to report the failure: 1. int A = 
 Negative Cases which will pass the checker: int aSimpleVariable = 0;
 After running the test cases of these four, the result is shown in the figure below:
 <br />
-<img src="url/relativePath">
+<img src="https://github.com/UBC-TestingCourse/group11/blob/zhen/assign4/MyBugChecker/error_message.png">
 ## Reason to choose Error Prone
 EError Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.
 It is open source and well-documented and available to the source code. 
